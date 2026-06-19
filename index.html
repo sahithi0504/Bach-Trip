@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  =====================================================================
+  DRUNK IN LOVE IN MIAMI — Bach Trip 2026
+  =====================================================================
+  GitHub Pages:
+    1. Push this repo to github.com/sahithi0504/Bach-Trip
+    2. Settings > Pages > Source: Deploy from branch > main / root
+    3. Live at: https://sahithi0504.github.io/Bach-Trip/
+
+  Netlify:
+    Drag the folder to netlify.com/drop — live instantly.
+  =====================================================================
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drunk in Love in Miami · Chloe & Daniel's Bach Trip 2026</title>
+  <meta name="description" content="Chloe & Daniel's Miami Bach Trip — July 31–August 4, 2026. #DrunkinLoveinMiami" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+/* ─────────────────────────────────────
+   TOKENS
+───────────────────────────────────── */
+:root {
+  --c-whisper:   #E8F0F8;
+  --c-powder:    #B8D4EA;
+  --c-french:    #7AA3CC;
+  --c-dusk:      #4A6FA5;
+  --c-midnight:  #2A4570;
+  --c-white:     #FAFAF8;
+  --c-silver:    #C8D4DC;
+  --c-sand:      #F5EFE6;
+  --c-text:      #1C2B3A;
+  --c-muted:     #4A6070;
+  --c-soft:      #7A90A0;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-xl: 36px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─────────────────────────────────────
+   RESET
+───────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--c-white);
+  color: var(--c-text);
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+
+/* ─────────────────────────────────────
+   NOISE OVERLAY (premium texture)
+───────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+}
+
+/* ─────────────────────────────────────
+   CURSOR
+───────────────────────────────────── */
+.cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--c-dusk);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width .2s var(--ease-out), height .2s var(--ease-out), background .2s;
+  mix-blend-mode: multiply;
+}
+.cursor-ring {
+  position: fixed;
+  width: 32px; height: 32px;
+  border: 1.5px solid rgba(74,111,165,.45);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: width .25s var(--ease-out), height .25s var(--ease-out);
+}
+@media (hover: none) { .cursor, .cursor-ring { display: none; } body { cursor: auto; } }
+
+/* ─────────────────────────────────────
+   NAV
+───────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 1.25rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: padding .4s var(--ease-out), background .4s, box-shadow .4s;
+}
+nav.scrolled {
+  padding: .8rem 2.5rem;
+  background: rgba(250,250,248,.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(74,111,165,.12), 0 8px 32px rgba(74,111,165,.06);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--c-white);
+  text-decoration: none;
+  transition: color .3s;
+  letter-spacing: .01em;
+}
+nav.scrolled .nav-logo { color: var(--c-dusk); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: .7rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(250,250,248,.8); text-decoration: none;
+  transition: color .2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1px; background: var(--c-powder);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s var(--ease-out);
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+nav.scrolled .nav-links a { color: var(--c-muted); }
+nav.scrolled .nav-links a::after { background: var(--c-french); }
+.nav-tag {
+  font-size: .68rem; font-weight: 600; letter-spacing: .1em;
+  color: rgba(250,250,248,.65); transition: color .3s;
+}
+nav.scrolled .nav-tag { color: var(--c-french); }
+@media (max-width: 760px) { .nav-links, .nav-tag { display: none; } }
+
+/* ─────────────────────────────────────
+   SCROLL ANIMATIONS
+───────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .8s var(--ease-out), transform .8s var(--ease-out);
+}
+.reveal.in { opacity: 1; transform: none; }
+.reveal.delay-1 { transition-delay: .08s; }
+.reveal.delay-2 { transition-delay: .16s; }
+.reveal.delay-3 { transition-delay: .24s; }
+.reveal.delay-4 { transition-delay: .32s; }
+.reveal.delay-5 { transition-delay: .40s; }
+.reveal.delay-6 { transition-delay: .48s; }
+.reveal.delay-7 { transition-delay: .56s; }
+
+/* ─────────────────────────────────────
+   HERO
+───────────────────────────────────── */
+#hero {
+  position: relative; min-height: 100svh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(175deg,
+    #1a3a5c 0%, #2a5580 20%, #3d7ab0 45%,
+    #6aa0c8 65%, #9dc4e0 82%, #cce0f0 100%);
+}
+.hero-parallax {
+  position: absolute; inset: -12%; will-change: transform;
+  background:
+    radial-gradient(ellipse 90% 70% at 15% 25%, rgba(26,58,92,.6) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 90% at 85% 75%, rgba(74,111,165,.35) 0%, transparent 55%);
+}
+
+/* Palm trees */
+.palm-left, .palm-right {
+  position: absolute; bottom: 120px;
+  pointer-events: none; opacity: .85;
+  animation: palmSway 6s ease-in-out infinite;
+}
+.palm-left  { left: -20px; transform-origin: bottom center; }
+.palm-right { right: -20px; transform-origin: bottom center; animation-delay: -3s; }
+@keyframes palmSway {
+  0%,100% { transform: rotate(-1.5deg); }
+  50%      { transform: rotate(1.5deg); }
+}
+@media (max-width: 600px) { .palm-left { left: -60px; } .palm-right { right: -60px; } }
+
+/* Bubbles */
+.bubbles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.bubble {
+  position: absolute; border-radius: 50%;
+  animation: bubbleRise linear infinite;
+  opacity: 0;
+}
+@keyframes bubbleRise {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  8%   { opacity: .55; }
+  92%  { opacity: .2; }
+  100% { transform: translateY(-105vh) translateX(20px) scale(.3); opacity: 0; }
+}
+
+/* ── DRUNK Typography ── */
+.hero-content {
+  position: relative; z-index: 10;
+  text-align: center; padding: 2rem 1.5rem;
+  display: flex; flex-direction: column; align-items: center;
+}
+.drunk-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.drunk-stacked {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  line-height: .88;
+}
+.drunk-word {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(7rem, 22vw, 16rem);
+  font-weight: 400;
+  color: var(--c-white);
+  letter-spacing: -.01em;
+  display: flex; flex-direction: column;
+  text-shadow: 0 4px 60px rgba(26,58,92,.4);
+}
+.drunk-word span { display: block; }
+.drunk-cocktail {
+  margin-top: .5rem;
+  opacity: .9;
+  animation: floatCocktail 4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes floatCocktail {
+  0%,100% { transform: translateY(0) rotate(-2deg); }
+  50%      { transform: translateY(-10px) rotate(2deg); }
+}
+.drunk-in-love {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  font-weight: 400;
+  color: rgba(250,250,248,.95);
+  letter-spacing: -.01em;
+  margin-top: -.4rem;
+  text-shadow: 0 2px 24px rgba(26,58,92,.3);
+}
+.drunk-sub {
+  font-size: clamp(.6rem, 2vw, .72rem);
+  font-weight: 700;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: rgba(200,212,220,.75);
+  margin-top: .8rem;
+}
+
+/* Countdown */
+.countdown {
+  display: flex; gap: .75rem; flex-wrap: wrap; justify-content: center;
+  margin: 2rem 0;
+}
+.cd-block {
+  display: flex; flex-direction: column; align-items: center;
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: var(--radius-md);
+  padding: .9rem 1.2rem;
+  min-width: 68px;
+  transition: background .2s;
+}
+.cd-block:hover { background: rgba(255,255,255,.18); }
+.cd-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem; line-height: 1;
+  color: var(--c-white);
+  letter-spacing: .02em;
+}
+.cd-label {
+  font-size: .55rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(200,212,220,.7); margin-top: .3rem;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .9rem 2.2rem;
+  background: rgba(250,250,248,.95);
+  color: var(--c-dusk); font-size: .78rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none; border-radius: 100px;
+  transition: transform .25s var(--ease-spring), box-shadow .25s;
+  box-shadow: 0 8px 32px rgba(26,58,92,.2);
+  margin-top: .5rem;
+}
+.hero-cta:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 48px rgba(26,58,92,.3);
+}
+
+/* Ocean wave bottom */
+.hero-waves {
+  position: absolute; bottom: -2px; left: 0; right: 0;
+  z-index: 5; line-height: 0;
+}
+.hero-waves svg { display: block; width: 100%; }
+
+/* ─────────────────────────────────────
+   SECTION SHARED
+───────────────────────────────────── */
+.section {
+  padding: 7rem 2rem;
+  position: relative;
+}
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.eyebrow {
+  display: inline-block;
+  font-size: .65rem; font-weight: 700;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--c-french);
+  margin-bottom: .65rem;
+}
+.section-h {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700; line-height: 1.1;
+  color: var(--c-text); margin-bottom: .85rem;
+}
+.section-h em { font-style: italic; color: var(--c-dusk); }
+.section-p {
+  font-size: 1.05rem; color: var(--c-muted);
+  line-height: 1.75; max-width: 500px;
+  margin-bottom: 3.5rem;
+}
+
+/* ─────────────────────────────────────
+   CREW
+───────────────────────────────────── */
+#crew { background: var(--c-white); }
+
+/* Stars — Chloe & Daniel */
+.crew-stars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+@media (max-width: 520px) { .crew-stars { grid-template-columns: 1fr; max-width: 280px; } }
+
+.crew-star-card {
+  position: relative; overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(155deg, var(--c-powder) 0%, var(--c-french) 60%, var(--c-dusk) 100%);
+  padding: 2.5rem 1.5rem 2rem;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  transition: transform .3s var(--ease-spring), box-shadow .3s;
+  box-shadow: 0 8px 40px rgba(74,111,165,.2);
+}
+.crew-star-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(26,58,92,.2) 0%, transparent 50%);
+}
+.crew-star-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 60px rgba(74,111,165,.3);
+}
+.star-avatar {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.25);
+  backdrop-filter: blur(8px);
+  border: 3px solid rgba(255,255,255,.5);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  position: relative; z-index: 1;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem; font-weight: 700;
+  color: var(--c-white);
+}
+.star-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.star-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--c-white);
+  position: relative; z-index: 1;
+  margin-bottom: .3rem;
+}
+.star-title {
+  font-size: .65rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(232,240,248,.7);
+  position: relative; z-index: 1;
+}
+/* little wave decoration inside star cards */
+.star-waves-deco {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  opacity: .2; pointer-events: none;
+}
+
+/* Wave divider */
+.crew-divider {
+  display: flex; align-items: center; gap: 1rem;
+  max-width: 600px; margin: 0 auto 2.5rem;
+  color: var(--c-silver);
+  font-size: .62rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+}
+.crew-divider::before, .crew-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--c-silver), transparent);
+}
+
+/* Crew grid */
+.crew-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 1rem;
+  max-width: 780px; margin: 0 auto;
+}
+.crew-card {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 1.5rem .75rem;
+  border-radius: var(--radius-lg);
+  background: var(--c-white);
+  border: 1px solid rgba(184,212,234,.4);
+  transition: transform .25s var(--ease-spring), box-shadow .25s, border-color .25s;
+  cursor: default;
+}
+.crew-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(74,111,165,.1);
+  border-color: var(--c-powder);
+}
+.crew-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--c-whisper), var(--c-powder));
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; margin-bottom: .85rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 700; color: var(--c-dusk);
+  border: 2px solid var(--c-whisper);
+  transition: border-color .25s;
+}
+.crew-card:hover .crew-avatar { border-color: var(--c-powder); }
+.crew-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.crew-name {
+  font-family: 'Playfair Display', serif;
+  font-size: .95rem; font-weight: 600;
+  color: var(--c-text);
+}
+
+/* ─────────────────────────────────────
+   ITINERARY — Horizontal Scroll Postcards
+───────────────────────────────────── */
+#itinerary { background: var(--c-whisper); padding: 7rem 0; }
+.itin-head { padding: 0 2rem 3rem; max-width: 1200px; margin: 0 auto; }
+
+.itin-scroll-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 1rem 2rem 2.5rem;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  gap: 1.5rem;
+  cursor: grab;
+}
+.itin-scroll-wrap:active { cursor: grabbing; }
+.itin-scroll-wrap::-webkit-scrollbar { display: none; }
+
+.day-card {
+  scroll-snap-align: start;
+  flex: 0 0 320px;
+  border-radius: var(--radius-xl);
+  background: var(--c-white);
+  box-shadow: 0 4px 24px rgba(74,111,165,.08);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform .3s var(--ease-spring), box-shadow .3s;
+  border: 1px solid rgba(184,212,234,.3);
+}
+.day-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(74,111,165,.16);
+}
+/* Last card gets right margin so it doesn't clip */
+.day-card:last-child { margin-right: 2rem; }
+
+.day-scene {
+  height: 170px;
+  position: relative; overflow: hidden;
+  flex-shrink: 0;
+}
+.day-scene svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.day-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+.day-meta {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(184,212,234,.35);
+}
+.day-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem; line-height: .9;
+  color: var(--c-powder);
+  letter-spacing: .01em;
+}
+.day-info { text-align: right; }
+.day-dow {
+  font-size: .6rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--c-french);
+  margin-bottom: .2rem;
+}
+.day-date-str {
+  font-family: 'Playfair Display', serif;
+  font-size: .95rem; font-weight: 600; color: var(--c-text);
+}
+.day-vibe {
+  display: inline-block;
+  font-size: .58rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .25rem .75rem; border-radius: 100px;
+  background: var(--c-whisper); color: var(--c-dusk);
+  margin-top: .4rem;
+}
+
+.day-acts { list-style: none; display: flex; flex-direction: column; gap: .7rem; flex: 1; }
+.day-act {
+  display: flex; align-items: flex-start; gap: .65rem;
+  font-size: .835rem; color: var(--c-muted); line-height: 1.4;
+}
+.day-act-icon {
+  width: 28px; height: 28px; border-radius: var(--radius-sm);
+  background: var(--c-whisper); display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+}
+.day-act-icon svg { width: 14px; height: 14px; }
+.day-act strong { display: block; font-weight: 600; color: var(--c-text); font-size: .85rem; }
+
+/* scroll hint */
+.itin-hint {
+  display: flex; align-items: center; gap: .5rem;
+  padding: 0 2rem;
+  max-width: 1200px; margin: 0 auto;
+  font-size: .7rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--c-soft);
+}
+.itin-hint-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--c-silver), transparent); }
+
+/* ─────────────────────────────────────
+   PACKING
+───────────────────────────────────── */
+#packing { background: var(--c-white); }
+.pack-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+}
+@media (max-width: 640px) { .pack-grid { grid-template-columns: 1fr; gap: 2rem; } }
+.pack-col-h {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700; color: var(--c-dusk);
+  margin-bottom: 1.25rem; padding-bottom: .75rem;
+  border-bottom: 2px solid var(--c-powder);
+  display: flex; align-items: center; gap: .6rem;
+}
+.pack-col-h svg { opacity: .7; }
+.pack-list { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+.pack-item {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .55rem .75rem; border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background .15s;
+  user-select: none;
+}
+.pack-item:hover { background: var(--c-whisper); }
+.pack-item.checked .pack-text {
+  text-decoration: line-through;
+  color: var(--c-silver);
+}
+.pack-box {
+  width: 20px; height: 20px; flex-shrink: 0;
+  border: 1.5px solid var(--c-powder);
+  border-radius: 5px; display: flex; align-items: center;
+  justify-content: center; transition: background .15s, border-color .15s;
+}
+.pack-item.checked .pack-box { background: var(--c-french); border-color: var(--c-french); }
+.pack-box svg { opacity: 0; transition: opacity .15s; }
+.pack-item.checked .pack-box svg { opacity: 1; }
+.pack-text { font-size: .875rem; color: var(--c-muted); transition: color .2s; }
+
+/* ─────────────────────────────────────
+   FOOTER
+───────────────────────────────────── */
+footer {
+  background: linear-gradient(160deg, var(--c-midnight) 0%, #1a3a5c 60%, #0f2540 100%);
+  position: relative; overflow: hidden;
+  padding: 5rem 2rem 3.5rem; text-align: center;
+}
+.footer-palms {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  pointer-events: none; opacity: .18;
+}
+.footer-drunk {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 12vw, 8rem);
+  color: rgba(255,255,255,.08);
+  letter-spacing: -.01em;
+  line-height: .9;
+  margin-bottom: 2rem;
+}
+.footer-tag {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  color: var(--c-powder); margin-bottom: .75rem;
+}
+.footer-see { font-size: 1rem; color: rgba(184,212,234,.65); margin-bottom: 2rem; }
+.footer-dates {
+  font-size: .65rem; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--c-french);
+  margin-bottom: 3rem;
+}
+.footer-rule {
+  width: 48px; height: 1px;
+  background: rgba(184,212,234,.25);
+  margin: 0 auto 2rem;
+}
+.footer-credit { font-size: .7rem; color: rgba(184,212,234,.3); letter-spacing: .05em; }
+
+/* ─────────────────────────────────────
+   SECTION DIVIDERS
+───────────────────────────────────── */
+.wave-divider { line-height: 0; position: relative; }
+.wave-divider svg { display: block; width: 100%; }
+  </style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Nav -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">Drunk in Love in Miami</a>
+  <ul class="nav-links">
+    <li><a href="#crew">The Crew</a></li>
+    <li><a href="#itinerary">Itinerary</a></li>
+    <li><a href="#packing">Packing</a></li>
+  </ul>
+  <span class="nav-tag">#DrunkinLoveinMiami</span>
+</nav>
+
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-parallax" id="heroBg"></div>
+  <div class="bubbles" id="bubbles"></div>
+
+  <!-- Palm trees -->
+  <div class="palm-left">
+    <svg width="160" height="340" viewBox="0 0 160 340" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M80 340 Q78 280 82 220 Q86 160 80 100" stroke="rgba(15,37,64,.7)" stroke-width="8" stroke-linecap="round" fill="none"/>
+      <!-- fronds -->
+      <path d="M80 100 Q40 60 0 80 Q30 55 80 100" fill="rgba(26,92,64,.6)"/>
+      <path d="M80 100 Q50 45 60 5 Q65 50 80 100" fill="rgba(20,80,55,.65)"/>
+      <path d="M80 100 Q120 50 140 70 Q115 50 80 100" fill="rgba(30,100,68,.6)"/>
+      <path d="M80 100 Q130 70 155 100 Q125 70 80 100" fill="rgba(26,90,62,.55)"/>
+      <path d="M80 100 Q30 90 10 120 Q35 85 80 100" fill="rgba(18,75,52,.6)"/>
+      <!-- coconuts -->
+      <circle cx="76" cy="108" r="5" fill="rgba(100,70,30,.5)"/>
+      <circle cx="85" cy="112" r="4" fill="rgba(100,70,30,.45)"/>
+    </svg>
+  </div>
+  <div class="palm-right">
+    <svg width="160" height="320" viewBox="0 0 160 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="transform:scaleX(-1)">
+      <path d="M80 320 Q82 265 78 205 Q74 150 80 95" stroke="rgba(15,37,64,.7)" stroke-width="8" stroke-linecap="round" fill="none"/>
+      <path d="M80 95 Q40 55 0 75 Q30 50 80 95" fill="rgba(26,92,64,.6)"/>
+      <path d="M80 95 Q55 40 62 0 Q67 46 80 95" fill="rgba(20,80,55,.65)"/>
+      <path d="M80 95 Q125 45 148 65 Q120 48 80 95" fill="rgba(30,100,68,.6)"/>
+      <path d="M80 95 Q128 65 150 95 Q122 68 80 95" fill="rgba(26,90,62,.55)"/>
+      <circle cx="76" cy="103" r="5" fill="rgba(100,70,30,.5)"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <!-- DRUNK in love typography -->
+    <div class="drunk-lockup reveal">
+      <div class="drunk-stacked">
+        <div class="drunk-word">
+          <span>DRU</span>
+          <span>NK</span>
+        </div>
+        <!-- Cocktail SVG -->
+        <div class="drunk-cocktail">
+          <svg width="90" height="180" viewBox="0 0 90 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- glass bowl -->
+            <path d="M10 30 L45 95 L80 30 Z" fill="none" stroke="rgba(250,250,248,.85)" stroke-width="2.5" stroke-linejoin="round"/>
+            <!-- liquid -->
+            <path d="M18 52 L45 95 L72 52 Z" fill="rgba(122,163,204,.4)"/>
+            <!-- stem -->
+            <line x1="45" y1="95" x2="45" y2="148" stroke="rgba(250,250,248,.8)" stroke-width="2.5"/>
+            <!-- base -->
+            <ellipse cx="45" cy="150" rx="22" ry="5" fill="none" stroke="rgba(250,250,248,.8)" stroke-width="2.5"/>
+            <!-- ice -->
+            <rect x="30" y="58" width="10" height="10" rx="2" fill="rgba(232,240,248,.5)" transform="rotate(-15 30 58)"/>
+            <rect x="46" y="62" width="9" height="9" rx="2" fill="rgba(232,240,248,.45)" transform="rotate(10 46 62)"/>
+            <!-- lime slice -->
+            <circle cx="75" cy="32" r="12" fill="rgba(120,180,90,.45)" stroke="rgba(250,250,248,.6)" stroke-width="1.5"/>
+            <line x1="75" y1="20" x2="75" y2="44" stroke="rgba(250,250,248,.5)" stroke-width="1"/>
+            <line x1="63" y1="32" x2="87" y2="32" stroke="rgba(250,250,248,.5)" stroke-width="1"/>
+            <line x1="66" y1="23" x2="84" y2="41" stroke="rgba(250,250,248,.4)" stroke-width=".8"/>
+            <line x1="84" y1="23" x2="66" y2="41" stroke="rgba(250,250,248,.4)" stroke-width=".8"/>
+            <!-- straw -->
+            <line x1="58" y1="28" x2="38" y2="90" stroke="rgba(250,180,120,.75)" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="drunk-in-love">in love</div>
+      <div class="drunk-sub">Chloe &amp; Daniel's Bach &nbsp;·&nbsp; Miami 2026</div>
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown reveal delay-2">
+      <div class="cd-block"><span class="cd-num" id="cd-d">--</span><span class="cd-label">Days</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Hours</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-m">--</span><span class="cd-label">Mins</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Secs</span></div>
+    </div>
+
+    <a href="#crew" class="hero-cta reveal delay-3">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Meet the Crew
+    </a>
+  </div>
+
+  <!-- Ocean waves -->
+  <div class="hero-waves">
+    <svg viewBox="0 0 1440 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="waveG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#9dc4e0" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="#FAFAF8"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#waveG)">
+        <animate attributeName="d" dur="9s" repeatCount="indefinite" values="
+          M0,70 C200,110 400,30 600,70 C800,110 1050,25 1200,65 C1320,95 1400,50 1440,65 L1440,140 L0,140 Z;
+          M0,50 C220,90 440,10 660,58 C880,105 1080,15 1260,62 C1360,88 1420,40 1440,55 L1440,140 L0,140 Z;
+          M0,70 C200,110 400,30 600,70 C800,110 1050,25 1200,65 C1320,95 1400,50 1440,65 L1440,140 L0,140 Z"/>
+      </path>
+      <path fill="rgba(250,250,248,.7)">
+        <animate attributeName="d" dur="6.5s" repeatCount="indefinite" values="
+          M0,95 C280,55 560,115 840,80 C1080,50 1280,105 1440,85 L1440,140 L0,140 Z;
+          M0,110 C250,70 520,120 800,90 C1050,62 1280,112 1440,98 L1440,140 L0,140 Z;
+          M0,95 C280,55 560,115 840,80 C1080,50 1280,105 1440,85 L1440,140 L0,140 Z"/>
+      </path>
+      <path fill="#FAFAF8">
+        <animate attributeName="d" dur="5s" repeatCount="indefinite" values="
+          M0,118 C360,80 720,130 1080,100 C1260,85 1380,118 1440,115 L1440,140 L0,140 Z;
+          M0,125 C300,88 660,128 1020,108 C1200,90 1360,122 1440,120 L1440,140 L0,140 Z;
+          M0,118 C360,80 720,130 1080,100 C1260,85 1380,118 1440,115 L1440,140 L0,140 Z"/>
+      </path>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CREW
+══════════════════════════════════════ -->
+<section id="crew" class="section">
+  <div class="section-inner">
+    <span class="eyebrow reveal">The Squad</span>
+    <h2 class="section-h reveal delay-1">Meet the <em>Crew</em></h2>
+    <p class="section-p reveal delay-2">Nine friends, one Miami sunrise. Here's everyone making memories with the couple of the hour.</p>
+
+    <!-- Chloe & Daniel — featured -->
+    <div class="crew-stars reveal delay-2">
+      <div class="crew-star-card">
+        <div class="star-avatar">
+          <img src="crew/chloe.jpg" alt="Chloe" onerror="this.style.display='none';this.parentNode.innerHTML='C';" />
+        </div>
+        <div class="star-name">Chloe</div>
+        <div class="star-title">👰 The Bride</div>
+        <div class="star-waves-deco">
+          <svg viewBox="0 0 300 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M0,25 C60,5 120,45 180,25 C240,5 280,35 300,25 L300,50 L0,50 Z" fill="white"/>
+          </svg>
+        </div>
+      </div>
+      <div class="crew-star-card" style="background:linear-gradient(155deg,#5a8ab5 0%,#3d6a9a 60%,#2a4e7a 100%)">
+        <div class="star-avatar">
+          <img src="crew/daniel.jpg" alt="Daniel" onerror="this.style.display='none';this.parentNode.innerHTML='D';" />
+        </div>
+        <div class="star-name">Daniel</div>
+        <div class="star-title">🤵 The Groom</div>
+        <div class="star-waves-deco">
+          <svg viewBox="0 0 300 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M0,25 C60,5 120,45 180,25 C240,5 280,35 300,25 L300,50 L0,50 Z" fill="rgba(250,250,248,.15)"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="crew-divider reveal delay-3">The Rest of the Crew</div>
+
+    <div class="crew-grid">
+      <div class="crew-card reveal delay-1">
+        <div class="crew-avatar"><img src="crew/serene.jpg" alt="Serene" onerror="this.style.display='none';this.parentNode.innerHTML='S';"/>S</div>
+        <div class="crew-name">Serene</div>
+      </div>
+      <div class="crew-card reveal delay-2">
+        <div class="crew-avatar"><img src="crew/sahithi.jpg" alt="Sahithi" onerror="this.style.display='none';this.parentNode.innerHTML='Sa';"/>Sa</div>
+        <div class="crew-name">Sahithi</div>
+      </div>
+      <div class="crew-card reveal delay-3">
+        <div class="crew-avatar"><img src="crew/yusuf.jpg" alt="Yusuf" onerror="this.style.display='none';this.parentNode.innerHTML='Y';"/>Y</div>
+        <div class="crew-name">Yusuf</div>
+      </div>
+      <div class="crew-card reveal delay-4">
+        <div class="crew-avatar"><img src="crew/noah.jpg" alt="Noah" onerror="this.style.display='none';this.parentNode.innerHTML='N';"/>N</div>
+        <div class="crew-name">Noah</div>
+      </div>
+      <div class="crew-card reveal delay-5">
+        <div class="crew-avatar"><img src="crew/tommy.jpg" alt="Tommy" onerror="this.style.display='none';this.parentNode.innerHTML='T';"/>T</div>
+        <div class="crew-name">Tommy</div>
+      </div>
+      <div class="crew-card reveal delay-6">
+        <div class="crew-avatar"><img src="crew/kannon.jpg" alt="Kannon" onerror="this.style.display='none';this.parentNode.innerHTML='K';"/>K</div>
+        <div class="crew-name">Kannon</div>
+      </div>
+      <div class="crew-card reveal delay-7">
+        <div class="crew-avatar" style="border:2px dashed var(--c-silver);background:var(--c-whisper);">?</div>
+        <div class="crew-name" style="color:var(--c-silver);">TBD</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- wave divider -->
+<div class="wave-divider" style="background:var(--c-white)">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
+    <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="var(--c-whisper)"/>
+  </svg>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     ITINERARY — Horizontal scroll postcards
+══════════════════════════════════════ -->
+<section id="itinerary" style="padding-top:0;">
+  <div class="itin-head">
+    <span class="eyebrow reveal">5 Days · Miami</span>
+    <h2 class="section-h reveal delay-1">The <em>Journey</em></h2>
+    <p class="section-p reveal delay-2" style="margin-bottom:0;">Drag or scroll to explore each day. Five days, infinite memories.</p>
+  </div>
+
+  <div class="itin-hint reveal">
+    <span>Scroll to explore</span>
+    <div class="itin-hint-line"></div>
+    <svg width="20" height="12" viewBox="0 0 20 12" fill="none" style="opacity:.4">
+      <path d="M1 6h18M13 1l5 5-5 5" stroke="var(--c-dusk)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="itin-scroll-wrap" id="itinScroll">
+
+    <!-- DAY 1 -->
+    <article class="day-card reveal">
+      <div class="day-scene">
+        <!-- Evening arrival scene -->
+        <svg viewBox="0 0 320 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- sky gradient -->
+          <defs>
+            <linearGradient id="s1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1a3a5c"/><stop offset="100%" stop-color="#4a8ab5"/>
+            </linearGradient>
+            <linearGradient id="w1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4a8ab5"/><stop offset="100%" stop-color="#6aaad0"/>
+            </linearGradient>
+          </defs>
+          <rect width="320" height="130" fill="url(#s1)"/>
+          <rect y="115" width="320" height="55" fill="url(#w1)"/>
+          <!-- stars -->
+          <circle cx="40" cy="20" r="1.5" fill="white" opacity=".7"/>
+          <circle cx="120" cy="35" r="1" fill="white" opacity=".6"/>
+          <circle cx="200" cy="15" r="1.5" fill="white" opacity=".8"/>
+          <circle cx="270" cy="28" r="1" fill="white" opacity=".5"/>
+          <circle cx="90" cy="50" r="1" fill="white" opacity=".6"/>
+          <circle cx="310" cy="12" r="1.2" fill="white" opacity=".7"/>
+          <!-- moon -->
+          <circle cx="260" cy="38" r="18" fill="#c8d4dc" opacity=".85"/>
+          <circle cx="268" cy="33" r="14" fill="#4a8ab5" opacity="1"/>
+          <!-- city skyline silhouette -->
+          <rect x="0" y="80" width="25" height="50" rx="2" fill="rgba(15,37,64,.85)"/>
+          <rect x="20" y="65" width="18" height="65" rx="2" fill="rgba(15,37,64,.9)"/>
+          <rect x="35" y="75" width="22" height="55" rx="2" fill="rgba(15,37,64,.85)"/>
+          <rect x="55" y="58" width="15" height="72" rx="2" fill="rgba(15,37,64,.95)"/>
+          <rect x="68" y="70" width="20" height="60" rx="2" fill="rgba(15,37,64,.85)"/>
+          <rect x="85" y="82" width="16" height="48" rx="2" fill="rgba(15,37,64,.8)"/>
+          <!-- windows -->
+          <rect x="58" y="65" width="4" height="4" rx="1" fill="rgba(255,220,120,.6)"/>
+          <rect x="64" y="65" width="4" height="4" rx="1" fill="rgba(255,220,120,.4)"/>
+          <rect x="22" y="72" width="4" height="4" rx="1" fill="rgba(255,220,120,.5)"/>
+          <rect x="22" y="80" width="4" height="4" rx="1" fill="rgba(255,220,120,.6)"/>
+          <rect x="28" y="76" width="4" height="4" rx="1" fill="rgba(255,220,120,.3)"/>
+          <!-- airplane -->
+          <g transform="translate(160,45) rotate(-15)">
+            <path d="M0,0 L30,5 L35,0 L30,-3 Z" fill="white" opacity=".9"/>
+            <path d="M10,-1 L22,-8 L25,-5 L15,2 Z" fill="white" opacity=".75"/>
+            <path d="M18,3 L26,8 L27,6 L22,1 Z" fill="white" opacity=".7"/>
+            <line x1="-20" y1="0" x2="0" y2="0" stroke="rgba(255,255,255,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+          </g>
+          <!-- water ripples -->
+          <ellipse cx="80" cy="128" rx="50" ry="4" fill="rgba(255,255,255,.08)"/>
+          <ellipse cx="220" cy="135" rx="70" ry="3" fill="rgba(255,255,255,.06)"/>
+          <ellipse cx="300" cy="125" rx="35" ry="3" fill="rgba(255,255,255,.07)"/>
+        </svg>
+      </div>
+      <div class="day-body">
+        <div class="day-meta">
+          <div class="day-num">01</div>
+          <div class="day-info">
+            <div class="day-dow">Friday</div>
+            <div class="day-date-str">July 31</div>
+            <div class="day-vibe">Arrive & Settle</div>
+          </div>
+        </div>
+        <ul class="day-acts">
+          <li class="day-act">
+            <div class="day-act-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><path d="M22 16.92V20a2 2 0 01-2.18 2A19.79 19.79 0 014.92 13.18 19.79 19.79 0 012 4.18 2 2 0 014 2h3.08a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div><strong>Arrivals</strong>Everyone lands, heads to the AirBnB</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39A2 2 0 009.66 16h9.46a2 2 0 001.96-1.61L23 6H6"/></svg>
+            </div>
+            <div><strong>Supply Run</strong>Costco & Walmart haul</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
+            </div>
+            <div><strong>Welcome Dinner</strong>First meal together, Miami style</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            </div>
+            <div><strong>Pool Night</strong>Swim at the BnB, unwind</div>
+          </li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- DAY 2 -->
+    <article class="day-card reveal delay-1">
+      <div class="day-scene">
+        <svg viewBox="0 0 320 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="s2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#87ceeb"/><stop offset="55%" stop-color="#b8e4f5"/><stop offset="100%" stop-color="#4a9ec0"/>
+            </linearGradient>
+          </defs>
+          <rect width="320" height="170" fill="url(#s2)"/>
+          <!-- sun -->
+          <circle cx="60" cy="45" r="28" fill="#ffd27a" opacity=".9"/>
+          <circle cx="60" cy="45" r="22" fill="#ffdf8a"/>
+          <!-- sun rays -->
+          <g stroke="#ffd27a" stroke-width="2" opacity=".5">
+            <line x1="60" y1="8" x2="60" y2="2"/><line x1="60" y1="82" x2="60" y2="88"/>
+            <line x1="23" y1="45" x2="17" y2="45"/><line x1="97" y1="45" x2="103" y2="45"/>
+            <line x1="37" y1="22" x2="33" y2="18"/><line x1="83" y1="68" x2="87" y2="72"/>
+            <line x1="83" y1="22" x2="87" y2="18"/><line x1="37" y1="68" x2="33" y2="72"/>
+          </g>
+          <!-- clouds -->
+          <ellipse cx="200" cy="35" rx="45" ry="20" fill="white" opacity=".8"/>
+          <ellipse cx="230" cy="28" rx="30" ry="18" fill="white" opacity=".85"/>
+          <ellipse cx="175" cy="38" rx="28" ry="16" fill="white" opacity=".75"/>
+          <ellipse cx="290" cy="55" rx="35" ry="16" fill="white" opacity=".7"/>
+          <!-- ocean -->
+          <rect y="105" width="320" height="65" fill="#3a8fbf"/>
+          <!-- wave lines -->
+          <path d="M0,112 C40,105 80,119 120,112 C160,105 200,119 240,112 C280,105 305,115 320,112" stroke="rgba(255,255,255,.3)" stroke-width="2" fill="none"/>
+          <path d="M0,122 C50,115 100,128 150,122 C200,116 260,128 320,122" stroke="rgba(255,255,255,.2)" stroke-width="1.5" fill="none"/>
+          <!-- yacht -->
+          <g transform="translate(140,68)">
+            <!-- hull -->
+            <path d="M-50,30 Q-30,40 0,40 Q30,40 50,30 L40,50 Q20,55 0,55 Q-20,55 -40,50 Z" fill="#1a3a5c"/>
+            <!-- deck -->
+            <rect x="-40" y="28" width="80" height="4" rx="2" fill="#2a5580"/>
+            <!-- mast -->
+            <line x1="0" y1="28" x2="0" y2="-20" stroke="rgba(250,250,248,.9)" stroke-width="2"/>
+            <!-- sail 1 -->
+            <path d="M0,-18 L-35,26 L0,26 Z" fill="rgba(250,250,248,.92)"/>
+            <!-- sail 2 -->
+            <path d="M0,-18 L35,22 L0,22 Z" fill="rgba(232,240,248,.85)"/>
+            <!-- flag -->
+            <path d="M0,-20 L12,-14 L0,-8 Z" fill="#e8a0a0"/>
+            <!-- wake -->
+            <path d="M50,45 Q70,42 90,46 Q110,50 130,44" stroke="rgba(255,255,255,.35)" stroke-width="2" fill="none"/>
+          </g>
+          <!-- sparkles on water -->
+          <path d="M30,130 L33,125 L36,130 L33,135 Z" fill="rgba(255,255,255,.5)"/>
+          <path d="M280,138 L283,133 L286,138 L283,143 Z" fill="rgba(255,255,255,.4)"/>
+        </svg>
+      </div>
+      <div class="day-body">
+        <div class="day-meta">
+          <div class="day-num">02</div>
+          <div class="day-info">
+            <div class="day-dow">Saturday</div>
+            <div class="day-date-str">Aug 1</div>
+            <div class="day-vibe">Yacht Day 🛥️</div>
+          </div>
+        </div>
+        <ul class="day-acts">
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div><strong>Morning Chill</strong>Breakfast at BnB, no rush</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><path d="M2 20h20M5 20V8l7-5 7 5v12M9 20v-5h6v5"/></svg></div>
+            <div><strong>Yacht Charter</strong>2 hrs on the water — the main event</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/></svg></div>
+            <div><strong>Waterfront Lunch</strong>Post-yacht feast</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
+            <div><strong>Beach + Clubbing</strong>Beach afternoon, glam up, night out</div>
+          </li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- DAY 3 -->
+    <article class="day-card reveal delay-2">
+      <div class="day-scene">
+        <svg viewBox="0 0 320 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="s3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#fce4b0"/><stop offset="50%" stop-color="#f5c57a"/><stop offset="100%" stop-color="#6aaad0"/>
+            </linearGradient>
+            <linearGradient id="sand3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#e8d5a0"/><stop offset="100%" stop-color="#d4c080"/>
+            </linearGradient>
+          </defs>
+          <rect width="320" height="170" fill="url(#s3)"/>
+          <!-- big sun -->
+          <circle cx="260" cy="50" r="38" fill="#ffcd5a" opacity=".85"/>
+          <circle cx="260" cy="50" r="30" fill="#ffda6e"/>
+          <!-- ocean -->
+          <rect y="105" width="320" height="65" fill="#5ab0d8"/>
+          <path d="M0,110 C50,103 100,117 150,110 C200,103 260,117 320,110" stroke="rgba(255,255,255,.35)" stroke-width="2" fill="none"/>
+          <path d="M0,120 C60,113 130,125 200,118 C260,112 300,122 320,118" stroke="rgba(255,255,255,.25)" stroke-width="1.5" fill="none"/>
+          <!-- sand -->
+          <path d="M0,140 Q80,130 160,138 Q240,145 320,136 L320,170 L0,170 Z" fill="url(#sand3)"/>
+          <!-- beach umbrella -->
+          <g transform="translate(120,120)">
+            <line x1="0" y1="0" x2="0" y2="-55" stroke="#8B4513" stroke-width="3" stroke-linecap="round"/>
+            <path d="M-40,-50 Q0,-70 40,-50 Q20,-30 -20,-30 Z" fill="#e87070" opacity=".9"/>
+            <path d="M-40,-50 Q-10,-60 0,-55" stroke="rgba(255,255,255,.4)" stroke-width="1" fill="none"/>
+            <path d="M0,-55 Q20,-62 40,-50" stroke="rgba(255,255,255,.4)" stroke-width="1" fill="none"/>
+          </g>
+          <!-- lounge chairs -->
+          <rect x="85" y="142" width="55" height="14" rx="5" fill="rgba(255,255,255,.6)"/>
+          <rect x="150" y="142" width="55" height="14" rx="5" fill="rgba(255,255,255,.55)"/>
+          <!-- flip flops -->
+          <ellipse cx="195" cy="160" rx="10" ry="5" fill="rgba(200,100,100,.5)" transform="rotate(-15 195 160)"/>
+          <ellipse cx="210" cy="162" rx="10" ry="5" fill="rgba(200,100,100,.45)" transform="rotate(-15 210 162)"/>
+          <!-- seagulls -->
+          <path d="M50,60 Q55,55 60,60" stroke="rgba(50,50,80,.5)" stroke-width="1.5" fill="none"/>
+          <path d="M65,50 Q71,44 77,50" stroke="rgba(50,50,80,.45)" stroke-width="1.5" fill="none"/>
+          <path d="M200,35 Q205,29 210,35" stroke="rgba(50,50,80,.4)" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+      <div class="day-body">
+        <div class="day-meta">
+          <div class="day-num">03</div>
+          <div class="day-info">
+            <div class="day-dow">Sunday</div>
+            <div class="day-date-str">Aug 2</div>
+            <div class="day-vibe">Beach Vibes</div>
+          </div>
+        </div>
+        <ul class="day-acts">
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+            <div><strong>Sleep In</strong>Recovery mode, earned it</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
+            <div><strong>Brunch</strong>Long, lazy, delicious</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>
+            <div><strong>Pool + Beach</strong>Swimsuits all day, sunset beach session</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+            <div><strong>Pizza + Board Games</strong>Low-key night at the BnB</div>
+          </li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- DAY 4 -->
+    <article class="day-card reveal delay-3">
+      <div class="day-scene">
+        <svg viewBox="0 0 320 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="s4" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1a4a6a"/><stop offset="100%" stop-color="#2a8ab0"/>
+            </linearGradient>
+          </defs>
+          <rect width="320" height="170" fill="url(#s4)"/>
+          <!-- ocean swells -->
+          <path d="M0,80 C40,60 80,90 120,70 C160,50 200,80 240,65 C280,50 310,72 320,65 L320,170 L0,170 Z" fill="#1d7599"/>
+          <path d="M0,100 C50,85 100,108 160,95 C220,82 280,105 320,95 L320,170 L0,170 Z" fill="#2a8fc0"/>
+          <!-- jet ski -->
+          <g transform="translate(70,78)">
+            <!-- rider -->
+            <circle cx="0" cy="-28" r="10" fill="#ffd7a0" opacity=".9"/>
+            <path d="M-5,-18 Q0,-8 5,-4" stroke="#4a80b0" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <!-- ski body -->
+            <path d="M-30,0 Q0,-10 30,0 Q25,12 -25,12 Z" fill="#e84040" opacity=".9"/>
+            <path d="M-30,0 Q-20,-12 30,0" fill="rgba(255,255,255,.3)"/>
+            <!-- wake spray -->
+            <path d="M30,4 Q50,0 70,-6" stroke="rgba(255,255,255,.5)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M30,8 Q55,5 75,0" stroke="rgba(255,255,255,.35)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <!-- splash drops -->
+            <circle cx="42" cy="-4" r="2.5" fill="rgba(255,255,255,.6)"/>
+            <circle cx="52" cy="-8" r="2" fill="rgba(255,255,255,.5)"/>
+            <circle cx="58" cy="-1" r="1.5" fill="rgba(255,255,255,.55)"/>
+          </g>
+          <!-- speed lines -->
+          <line x1="155" y1="85" x2="0" y2="90" stroke="rgba(255,255,255,.12)" stroke-width="2" stroke-dasharray="8 6"/>
+          <line x1="155" y1="92" x2="0" y2="100" stroke="rgba(255,255,255,.08)" stroke-width="1.5" stroke-dasharray="6 8"/>
+          <!-- second jet ski (background) -->
+          <g transform="translate(200,105)" opacity=".7">
+            <path d="M-25,0 Q0,-8 25,0 Q20,10 -20,10 Z" fill="#2060a0" opacity=".85"/>
+            <path d="M25,3 Q40,0 55,-4" stroke="rgba(255,255,255,.4)" stroke-width="2" fill="none"/>
+          </g>
+          <!-- sun top right -->
+          <circle cx="285" cy="30" r="24" fill="#ffcd5a" opacity=".6"/>
+          <!-- go kart text accent -->
+          <text x="210" y="50" font-family="Bebas Neue, sans-serif" font-size="20" fill="rgba(255,255,255,.15)" letter-spacing="3">ADVENTURE</text>
+        </svg>
+      </div>
+      <div class="day-body">
+        <div class="day-meta">
+          <div class="day-num">04</div>
+          <div class="day-info">
+            <div class="day-dow">Monday</div>
+            <div class="day-date-str">Aug 3</div>
+            <div class="day-vibe">Full Send Day</div>
+          </div>
+        </div>
+        <ul class="day-acts">
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <div><strong>Boat Cars + Jet Skis</strong>Outdoor go-karting too — full adventure day</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39A2 2 0 009.66 16h9.46a2 2 0 001.96-1.61L23 6H6"/></svg></div>
+            <div><strong>Explore + Shopping</strong>Wynwood, Brickell, wherever the vibe takes us</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+            <div><strong>Dinner Out</strong>Nice sit-down dinner</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+            <div><strong>Karaoke at Home + Pool</strong>Private karaoke, pool late night</div>
+          </li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- DAY 5 -->
+    <article class="day-card reveal delay-4">
+      <div class="day-scene">
+        <svg viewBox="0 0 320 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="s5" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2a1a4a"/><stop offset="30%" stop-color="#8b2a6a"/><stop offset="65%" stop-color="#e8623a"/><stop offset="100%" stop-color="#f5b050"/>
+            </linearGradient>
+            <linearGradient id="w5" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#c04a3a"/><stop offset="100%" stop-color="#3a6a9a"/>
+            </linearGradient>
+          </defs>
+          <rect width="320" height="170" fill="url(#s5)"/>
+          <!-- ocean -->
+          <rect y="110" width="320" height="60" fill="url(#w5)"/>
+          <path d="M0,115 C60,108 120,122 180,115 C240,108 290,120 320,115" stroke="rgba(255,200,100,.3)" stroke-width="1.5" fill="none"/>
+          <!-- sun on horizon -->
+          <circle cx="160" cy="112" r="36" fill="#ffd760" opacity=".9"/>
+          <circle cx="160" cy="112" r="28" fill="#ffdf6a"/>
+          <!-- sun reflection on water -->
+          <path d="M145,115 Q160,118 175,115 Q170,125 160,128 Q150,125 145,115 Z" fill="rgba(255,200,50,.4)"/>
+          <rect x="145" y="115" width="30" height="55" fill="rgba(255,200,50,.15)"/>
+          <!-- silhouette palm tree left -->
+          <path d="M30,170 Q32,130 35,100" stroke="rgba(15,15,30,.8)" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <path d="M35,102 Q10,75 -10,88 Q12,68 35,102" fill="rgba(15,15,30,.75)"/>
+          <path d="M35,102 Q18,62 28,42 Q28,68 35,102" fill="rgba(15,15,30,.7)"/>
+          <path d="M35,102 Q60,68 72,80 Q55,62 35,102" fill="rgba(15,15,30,.72)"/>
+          <!-- silhouette palm tree right -->
+          <path d="M285,170 Q288,135 290,108" stroke="rgba(15,15,30,.8)" stroke-width="5" stroke-linecap="round" fill="none"/>
+          <path d="M290,110 Q265,82 250,92 Q268,74 290,110" fill="rgba(15,15,30,.72)"/>
+          <path d="M290,110 Q315,76 328,88 Q310,68 290,110" fill="rgba(15,15,30,.7)"/>
+          <!-- departing plane trail -->
+          <g transform="translate(230,50) rotate(20)">
+            <path d="M0,0 L22,4 L26,0 L22,-3 Z" fill="rgba(255,255,255,.75)"/>
+            <path d="M8,-1 L18,-7 L20,-4 L12,2 Z" fill="rgba(255,255,255,.6)"/>
+            <line x1="-30" y1="0" x2="-2" y2="0" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          </g>
+          <!-- stars emerging -->
+          <circle cx="80" cy="20" r="1.5" fill="rgba(255,255,255,.6)"/>
+          <circle cx="250" cy="15" r="1.2" fill="rgba(255,255,255,.5)"/>
+          <circle cx="320" cy="35" r="1" fill="rgba(255,255,255,.6)"/>
+        </svg>
+      </div>
+      <div class="day-body">
+        <div class="day-meta">
+          <div class="day-num">05</div>
+          <div class="day-info">
+            <div class="day-dow">Tuesday</div>
+            <div class="day-date-str">Aug 4</div>
+            <div class="day-vibe">See You Soon ✈️</div>
+          </div>
+        </div>
+        <ul class="day-acts">
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+            <div><strong>Wake Up & Soak It In</strong>Last morning in Miami — savor it</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></div>
+            <div><strong>Pack + Clean Up</strong>Tidy the BnB together</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+            <div><strong>Check Out by 10am</strong>Don't forget anything!</div>
+          </li>
+          <li class="day-act">
+            <div class="day-act-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="1.8"><path d="M22 16.92V20a2 2 0 01-2.18 2A19.79 19.79 0 014.92 13.18 19.79 19.79 0 012 4.18 2 2 0 014 2h3.08a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+            <div><strong>Fly Home</strong>Safe travels — with the best memories 🩵</div>
+          </li>
+        </ul>
+      </div>
+    </article>
+
+  </div><!-- /scroll wrap -->
+</section>
+
+
+<!-- wave divider -->
+<div class="wave-divider" style="background:var(--c-whisper)">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
+    <path d="M0,20 C240,55 480,0 720,30 C960,58 1200,10 1440,30 L1440,60 L0,60 Z" fill="var(--c-white)"/>
+  </svg>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PACKING
+══════════════════════════════════════ -->
+<section id="packing" class="section">
+  <div class="section-inner">
+    <span class="eyebrow reveal">Don't Forget</span>
+    <h2 class="section-h reveal delay-1">The Packing <em>List</em></h2>
+    <p class="section-p reveal delay-2">Tap each item to check it off as you pack. Pack smart, look amazing.</p>
+
+    <div class="pack-grid">
+      <div class="reveal delay-2">
+        <div class="pack-col-h">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Essentials
+        </div>
+        <ul class="pack-list">
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Valid ID / Passport</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Phone charger + portable battery</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Sunscreen SPF 50+</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Cash + credit cards</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Sunglasses</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Medications + first aid</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">AirPods / headphones</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Travel-size toiletries</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Reusable water bottle</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Aloe vera (post-sun)</span></li>
+        </ul>
+      </div>
+
+      <div class="reveal delay-3">
+        <div class="pack-col-h">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--c-dusk)" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          Outfits + Fun
+        </div>
+        <ul class="pack-list">
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Swimsuits (at least 2)</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Club / night out outfits</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Cover-ups + beach dresses</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Sandals + sneakers</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Going-out heels / shoes</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Comfy pjs / lounge sets</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Waterproof phone case</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Beach towel</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Sash + tiara (for Chloe!)</span></li>
+          <li class="pack-item" onclick="togglePack(this)"><div class="pack-box"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="pack-text">Bluetooth speaker</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <!-- background palms -->
+  <div class="footer-palms">
+    <svg viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- left palm -->
+      <path d="M80,200 Q85,150 90,110" stroke="rgba(180,210,230,.6)" stroke-width="8" stroke-linecap="round" fill="none"/>
+      <path d="M90,112 Q50,75 15,90 Q42,60 90,112" fill="rgba(100,160,120,.5)"/>
+      <path d="M90,112 Q68,60 78,30 Q80,66 90,112" fill="rgba(90,150,112,.55)"/>
+      <path d="M90,112 Q128,68 148,82 Q120,60 90,112" fill="rgba(100,160,120,.5)"/>
+      <!-- right palm -->
+      <path d="M1360,200 Q1355,155 1350,115" stroke="rgba(180,210,230,.6)" stroke-width="8" stroke-linecap="round" fill="none"/>
+      <path d="M1350,117 Q1390,80 1425,95 Q1398,65 1350,117" fill="rgba(100,160,120,.5)"/>
+      <path d="M1350,117 Q1372,65 1362,35 Q1360,70 1350,117" fill="rgba(90,150,112,.55)"/>
+      <path d="M1350,117 Q1312,73 1292,87 Q1320,65 1350,117" fill="rgba(100,160,120,.5)"/>
+    </svg>
+  </div>
+
+  <div class="footer-drunk">DRUNK<br/>IN LOVE</div>
+  <div class="footer-tag">#DrunkinLoveinMiami</div>
+  <div class="footer-see">See you in Miami 🩵</div>
+  <div class="footer-dates">July 31 – August 4, 2026</div>
+  <div class="footer-rule"></div>
+  <div class="footer-credit">Made with love for Chloe &amp; Daniel · Miami 2026</div>
+</footer>
+
+
+<script>
+/* ── Cursor ── */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function tick(){
+  cur.style.cssText+=`;left:${mx}px;top:${my}px;`;
+  rx+=(mx-rx)*.11; ry+=(my-ry)*.11;
+  ring.style.cssText+=`;left:${rx}px;top:${ry}px;`;
+  requestAnimationFrame(tick);
+})();
+document.addEventListener('mousedown',()=>{cur.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.opacity='.2';});
+document.addEventListener('mouseup',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.opacity='.5';});
+
+/* ── Parallax hero ── */
+const heroBg = document.getElementById('heroBg');
+window.addEventListener('scroll',()=>{
+  heroBg.style.transform=`translateY(${window.scrollY*.38}px)`;
+},{passive:true});
+
+/* ── Nav scroll class ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>60);
+},{passive:true});
+
+/* ── Bubbles ── */
+const bc = document.getElementById('bubbles');
+const bColors = [
+  'rgba(184,212,234,.4)','rgba(122,163,204,.35)',
+  'rgba(74,111,165,.25)','rgba(200,220,235,.45)','rgba(232,240,248,.5)'
+];
+function spawnBubble(){
+  const b=document.createElement('div');
+  b.className='bubble';
+  const sz=Math.random()*24+6;
+  b.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;bottom:-${sz}px;background:${bColors[Math.floor(Math.random()*bColors.length)]};animation-duration:${Math.random()*10+8}s;animation-delay:${Math.random()*2}s;`;
+  bc.appendChild(b);
+  setTimeout(()=>b.remove(),22000);
+}
+setInterval(spawnBubble,700);
+for(let i=0;i<10;i++) setTimeout(spawnBubble,i*180);
+
+/* ── Countdown ── */
+function tick(){
+  const t=new Date('2026-07-31T00:00:00');
+  const now=new Date();
+  const diff=t-now;
+  if(diff<=0){
+    ['cd-d','cd-h','cd-m','cd-s'].forEach((id,i)=>{
+      document.getElementById(id).textContent=['🎉','🩵','🎊','🥂'][i];
+    });
+    return;
+  }
+  document.getElementById('cd-d').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');
+  document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');
+}
+tick(); setInterval(tick,1000);
+
+/* ── Scroll reveal ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});
+},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Hero items fire on load
+document.querySelectorAll('#hero .reveal').forEach((el,i)=>{
+  setTimeout(()=>el.classList.add('in'),300+i*200);
+});
+
+/* ── Packing toggle ── */
+function togglePack(el){ el.classList.toggle('checked'); }
+
+/* ── Itinerary drag-to-scroll ── */
+const scroll=document.getElementById('itinScroll');
+let isDown=false,startX,scrollLeft;
+scroll.addEventListener('mousedown',e=>{
+  isDown=true; scroll.classList.add('active');
+  startX=e.pageX-scroll.offsetLeft;
+  scrollLeft=scroll.scrollLeft;
+});
+scroll.addEventListener('mouseleave',()=>{isDown=false;});
+scroll.addEventListener('mouseup',()=>{isDown=false;});
+scroll.addEventListener('mousemove',e=>{
+  if(!isDown)return;
+  e.preventDefault();
+  const x=e.pageX-scroll.offsetLeft;
+  scroll.scrollLeft=scrollLeft-(x-startX)*1.2;
+});
+</script>
+</body>
+</html>
