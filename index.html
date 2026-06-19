@@ -179,16 +179,41 @@ nav.scrolled .nav-tag { color: var(--c-french); }
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   overflow: hidden;
-  background: linear-gradient(175deg,
-    #1a3a5c 0%, #2a5580 20%, #3d7ab0 45%,
-    #6aa0c8 65%, #9dc4e0 82%, #cce0f0 100%);
+  /* Realistic beach: warm sky fades into deep horizon, ocean fills lower third */
+  background:
+    linear-gradient(180deg,
+      #f7c98a 0%,        /* warm golden sky top */
+      #f0a96e 8%,        /* soft orange glow */
+      #c97a8a 16%,       /* peachy-pink mid sky */
+      #7a9ec8 30%,       /* blue sky */
+      #3d6fa0 48%,       /* deep horizon blue */
+      #245a8a 58%,       /* ocean surface */
+      #1a4a78 70%,       /* deeper water */
+      #102d54 100%);     /* deep ocean base */
 }
 .hero-parallax {
   position: absolute; inset: -12%; will-change: transform;
   background:
-    radial-gradient(ellipse 90% 70% at 15% 25%, rgba(26,58,92,.6) 0%, transparent 65%),
-    radial-gradient(ellipse 70% 90% at 85% 75%, rgba(74,111,165,.35) 0%, transparent 55%);
+    /* sun glow upper left */
+    radial-gradient(ellipse 55% 40% at 22% 12%, rgba(255,200,100,.35) 0%, transparent 60%),
+    /* horizon light bloom */
+    radial-gradient(ellipse 100% 25% at 50% 52%, rgba(255,220,160,.12) 0%, transparent 55%),
+    /* ocean depth right */
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(10,40,80,.45) 0%, transparent 55%);
 }
+/* Subtle shimmer on the ocean surface */
+.hero-ocean-shimmer {
+  position: absolute; left: 0; right: 0; bottom: 120px;
+  height: 200px; pointer-events: none; z-index: 3;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    rgba(255,255,255,.025) 40px,
+    transparent 80px
+  );
+  animation: shimmer 8s linear infinite;
+}
+@keyframes shimmer { 0% { background-position-x: 0; } 100% { background-position-x: 160px; } }
 
 
 /* Bubbles */
@@ -354,7 +379,14 @@ nav.scrolled .nav-tag { color: var(--c-french); }
   max-width: 600px;
   margin: 0 auto 2.5rem;
 }
-@media (max-width: 520px) { .crew-stars { grid-template-columns: 1fr; max-width: 280px; } }
+/* Always keep Chloe & Daniel side by side, even on small phones */
+@media (max-width: 520px) {
+  .crew-stars { gap: .75rem; max-width: 100%; }
+  .crew-star-card { padding: 1.5rem .75rem 1.25rem; border-radius: var(--radius-lg); }
+  .star-avatar { width: 72px; height: 72px; font-size: 1.6rem; margin-bottom: .85rem; }
+  .star-name { font-size: 1.1rem; }
+  .star-title { font-size: .58rem; }
+}
 
 .crew-star-card {
   position: relative; overflow: hidden;
@@ -672,6 +704,7 @@ footer {
 ══════════════════════════════════════ -->
 <section id="hero">
   <div class="hero-parallax" id="heroBg"></div>
+  <div class="hero-ocean-shimmer"></div>
   <div class="bubbles" id="bubbles"></div>
 
   <div class="hero-content">
@@ -708,7 +741,7 @@ footer {
         </div>
       </div>
       <div class="drunk-in-love">in love</div>
-      <div class="drunk-sub" style="letter-spacing:.28em; font-size:clamp(.58rem,1.6vw,.78rem); margin-top:1.4rem; margin-bottom:.2rem; line-height:2;">GETTING LIT BEFORE GETTING HITCHED</div>
+      <div class="drunk-sub" style="letter-spacing:.22em; font-size:clamp(.6rem,1.8vw,.8rem); margin-top:1.6rem; margin-bottom:.4rem; padding: .6rem 1.5rem; border-top:1px solid rgba(255,255,255,.15); border-bottom:1px solid rgba(255,255,255,.15);">GETTING LIT BEFORE GETTING HITCHED</div>
     </div>
 
     <!-- Countdown -->
